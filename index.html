@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Atlassian Data Collector</title>
+	<meta name="description" content="Data Collection">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+	<script src="https://www.jsviews.com/download/jsviews.min.js"></script>
+  
+  	<!--  <script src="https://underscorejs.org/underscore-min.js"></script>-->
+
+</head>
+
+<body>
+
+	<div id="addonList2"></div>
+	</br>
+	</br>
+
+
+	<div id="addonList"></div>
+	</br>
+	</br>
+
+
+	<div id="applicationList"></div>
+
+
+	<script id="addonTmpl" type="text/x-jsrender">
+		<h3>Addon Information </h3>
+    {{for}}
+      {{props}}
+        <b>{{>key}}:</b> {{>prop}}<br/>
+      {{/props}}
+    {{/for}}
+  </script>
+
+
+	<script id="addonTmpl2" type="text/x-jsrender">
+    
+	</script>
+
+	<script id="applicationTmpl" type="text/x-jsrender">
+		{{include applications}}
+      Number of applications: <u><b>{{:length}}</b></u>
+      <ul>
+      {{for}}
+        <li>{{:name}} - {{:key}} - <a href="{{:details.downloadPage}}">download</a></li>
+      {{/for}}
+      </ul>
+    {{/include}}
+  </script>
+
+</body>
