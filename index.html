@@ -11,26 +11,33 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 	<script src="https://www.jsviews.com/download/jsviews.min.js"></script>
-  
-  	<!--  <script src="https://underscorejs.org/underscore-min.js"></script>-->
+
+	<!--  <script src="https://underscorejs.org/underscore-min.js"></script>-->
 
 </head>
 
 <body>
+	<div class="ui container">
+		<div id="confAddons"></div>
+		</br>
 
-	<div id="addonList2"></div>
-	</br>
-	</br>
-
-
-	<div id="addonList"></div>
-	</br>
-	</br>
+		<div id="addonList2"></div>
+		</br>
+		</br>
 
 
-	<div id="applicationList"></div>
+		<div id="addonList"></div>
+		</br>
+		</br>
 
+		<h4 class="ui horizontal divider header">
+			<i class="tags icon"></i>
+			Applications
+		</h4>
 
+		<div id="applicationList"></div>
+
+	</div>
 	<script id="addonTmpl" type="text/x-jsrender">
 		<h3>Addon Information </h3>
     {{for}}
@@ -42,7 +49,7 @@
 
 
 	<script id="addonTmpl2" type="text/x-jsrender">
-    
+
 	</script>
 
 	<script id="applicationTmpl" type="text/x-jsrender">

@@ -28,6 +28,7 @@ var bitbucketAddons = [
 
 /************************** */
 // getApplications()
+// gets basic app data. Need to expand to get version information
 /************************** */
 getApplications();
 function getApplications() {
