@@ -20,13 +20,24 @@
 	<div class="ui container">
 		<div id="confAddons"></div>
 		</br>
+		<div class="ui segment">
+			<div class="ui two column very relaxed grid">
+				<div class="column">
+					<h4 class="ui horizontal divider header">
+						addonList2
+					</h4>
+					<div id="addonList2"></div>
+				</div>
+				<div class="column">
+					<div id="addonList"></div>
+				</div>
+			</div>
 
-		<div id="addonList2"></div>
-		</br>
-		</br>
+		</div>
 
 
-		<div id="addonList"></div>
+
+
 		</br>
 		</br>
 
@@ -38,8 +49,9 @@
 		<div id="applicationList"></div>
 
 	</div>
+
 	<script id="addonTmpl" type="text/x-jsrender">
-		<h3>Addon Information </h3>
+		<h4 class="ui horizontal divider header">{{:name}}</h4>
     {{for}}
       {{props}}
         <b>{{>key}}:</b> {{>prop}}<br/>
@@ -49,7 +61,9 @@
 
 
 	<script id="addonTmpl2" type="text/x-jsrender">
-
+    {{for}}
+      {{:name}}
+    {{/for}}
 	</script>
 
 	<script id="applicationTmpl" type="text/x-jsrender">
@@ -57,10 +71,9 @@
       Number of applications: <u><b>{{:length}}</b></u>
       <ul>
       {{for}}
-        <li>{{:name}} - {{:key}} - <a href="{{:details.downloadPage}}">download</a></li>
+        <li>{{:name}} - {{:key}} - <a href="{{:details.downloadPage}}"><i class="cloud download icon"></i></a></li>
       {{/for}}
       </ul>
     {{/include}}
   </script>
-
 </body>

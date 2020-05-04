@@ -1,9 +1,7 @@
 /*************************************** 
 // Notes and Links
 // https://www.jsviews.com/
-// https://underscorejs.org/
 /*************************************** */
-$.getScript("https://underscorejs.org/underscore-min.js", function() {});
 
 /************************** */
 // Setting Key Arrays
@@ -18,13 +16,9 @@ var confluenceAddons = [
   "com.atlassian.troubleshooting.plugin-confluence" // Troubleshooting and Support - Confluence
 ];
 
-var jiraAddons = [
+var jiraAddons = [];
 
-];
-
-var bitbucketAddons = [
-
-];
+var bitbucketAddons = [];
 
 /************************** */
 // getApplications()
@@ -60,23 +54,72 @@ function getApplications() {
 /******************************************************************************************** */
 let confAddonResults = [];
 let addonResults2 = [];
-
-confluenceAddons.forEach(addon => {
-  //getAddonInfo3(addon)
-  addonResults2.push(getAddonInfo3(addon));
+var spacer = "/****************************************/";
+confluenceAddons.forEach(addonKey => {
+  //getAddonInfo3(addonKey)
 });
-console.log("addonResults2", addonResults2);
-const entries = Object.entries(addonResults2);
-console.log(entries);
+
+var myResults = new Object();
+var obj = new Object();
+var element = new Object(),
+  cart = [];
+
 function getAddonInfo3(addonKey) {
   const uri = "https://marketplace.atlassian.com/rest/2/addons/" + addonKey;
   getData(uri).then(data => {
-    console.log(data);
+    element.name = data.name;
+    myResults = data.name;
+    //cart.push(element)
   });
 }
 
+getAddonInfo4(confluenceAddons);
+
+let myResultsArray = [];
+
+function getAddonInfo4(addonKeys) {
+  addonKeys.forEach(addonKey => {
+    const uri = "https://marketplace.atlassian.com/rest/2/addons/" + addonKey;
+    getData(uri).then(data => {
+      element.name = data.name;
+
+      element.key = data.key;
+      element.summary = data.summary;
+      element.lastModified = data.lastModified;
+      element.tagline = data.tagline;
+      //element.logo = data._embedded.logo._links.highRes.href
+      element.downloads = data._embedded.distribution.downloads;
+      element.totalUsers = data._embedded.distribution.totalUsers;
+      element.supportTicketSystem = data.vendorLinks.supportTicketSystem;
+
+      for (let [key, value] of Object.entries(element)) {
+        //console.log(`${key}: ${value}`);
+      }
+
+      myResultsArray.push(JSON.stringify(element));
+    });
+  });
+}
+
+console.log("myResultsArray", myResultsArray);
+
+console.table("cart", cart);
+console.log("element", element);
+
+console.log(spacer);
+
+for (let [key, value] of Object.entries(element)) {
+  console.log(`${key}: ${value}`);
+}
+
+console.log(spacer);
+
+app = {
+  cart: cart
+};
+
 var myTemplate = $.templates("#addonTmpl2");
-var html = myTemplate.render(confAddonResults);
+var html = myTemplate.render(myResultsArray);
 $("#addonList2").html(html);
 
 /******************************************************************************************** */
@@ -86,15 +129,8 @@ let addonResults = [];
 confluenceAddons.forEach(addon => {
   let g = getAddonInfo(addon);
   addonResults.push(g);
+  return g;
 });
-
-addonResults.forEach(addonResult => {
-  //console.log("addonResult", addonResult)
-  //console.table("results: ", results)
-});
-
-//console.table(addonResults)
-//console.log("addonResults: ", addonResults);
 
 var myTemplate = $.templates("#addonTmpl2");
 var html = myTemplate.render(addonResults);
